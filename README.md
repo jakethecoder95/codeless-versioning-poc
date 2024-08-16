@@ -18,7 +18,7 @@ There is broad agreement that we need to move away from snapshot versioning for 
 ## Pros/Cons
 
 ### Cons
-- The version is not available to be used inside the codebase so it cannot be displayed to external entities. Self-referencing the version inside the code may be important.
+- The version is not available to be used inside the codebase so it cannot be displayed to external entities. Self-referencing the version inside the code may be important
 
 ## Conclusion
 
