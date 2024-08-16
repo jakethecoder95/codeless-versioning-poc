@@ -4,7 +4,7 @@ run-name: Releasing, triggered by ${{github.actor}}
 on:
   push:
     tags:
-      - '*'
+      - 'v*.*.*'
 
 env:
   DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
