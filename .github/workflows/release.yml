@@ -24,19 +24,24 @@ jobs:
         id: vars
         run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
 
-      - uses: actions/checkout@v1
       - name: 'Get Previous tag'
         id: currenttag
         uses: "WyriHaximus/github-action-get-previous-tag@v1"
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
+      - name: Write release version
+        run: |
+          VERSION=${GITHUB_REF_NAME#v}
+          echo Version: $VERSION
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+
       - name: Search latest semver Image
         uses: tinact/docker.image-retag@1.0.3
         with:
           image_name: ${{ env.IMAGE }}
-          image_old_tag: ${{ steps.currenttag.outputs.tag }}-${{ steps.vars.outputs.sha_short}}
-          image_new_tag: ${{ steps.currenttag.outputs.tag }}
+          image_old_tag: ${VERSION}-${{ steps.vars.outputs.sha_short}}
+          image_new_tag: ${VERSION}
           registry: registry.hub.docker.com
           registry_username: ${{ env.DOCKERHUB_USERNAME }}
           registry_password: ${{ env.DOCKERHUB_TOKEN }}
