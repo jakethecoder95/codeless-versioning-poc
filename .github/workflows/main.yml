@@ -24,15 +24,16 @@ jobs:
         id: vars
         run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
 
-      - name: Get previous tag
+      - uses: actions/checkout@v1
+      - name: 'Get Previous tag'
         id: previoustag
-        uses: 'WyriHaximus/github-action-get-previous-tag@v1'
+        uses: "WyriHaximus/github-action-get-previous-tag@v1"
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
-      - name: Get next minor version
-        id: semver
-        uses: 'WyriHaximus/github-action-next-semvers@v1'
+      - name: 'Get next minor version'
+        id: semvers
+        uses: "WyriHaximus/github-action-next-semvers@v1"
         with:
           version: ${{ steps.previoustag.outputs.tag }}
 
