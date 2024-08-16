@@ -1,5 +1,8 @@
 # Codeless Versioning Strategy
 
+This repository proposes a strategy for versioning that decouples the version from the source code and utilizes github tagging. Below is a diagram of how this version strategy works.
+![[./assets/versioning-diagram.png]]
+
 ## Introduction
 The goal of this repository is to explore different approaches people are using for managing versioning. The goal of our system is to have a release pipeline that allows us to easily release versions across our environments. From dev to qa-test, staging, and finally production. We need a way to easily mark certain commits in our version control system as ready for each environment and move those artifacts between environments in a way that reduces waste and redundancy.
 
