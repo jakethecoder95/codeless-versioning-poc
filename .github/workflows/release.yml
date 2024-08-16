@@ -20,8 +20,15 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
+      - uses: actions/checkout@v1
+      - name: 'Get Previous tag'
+        id: previoustag
+        uses: "WyriHaximus/github-action-get-previous-tag@v1"
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+
       - name: Echo the tag
-        run: echo "The pushed tag is $GITHUB_REF"
+        run: echo "The pushed tag is ${{ steps.previoustag.outputs.tag }}"
 
 #       - name: Set up Docker Buildx
 #         uses: docker/setup-buildx-action@v3
