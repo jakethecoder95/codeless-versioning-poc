@@ -40,8 +40,8 @@ jobs:
         uses: tinact/docker.image-retag@1.0.3
         with:
           image_name: ${{ env.IMAGE }}
-          image_old_tag: ${VERSION}-${{ steps.vars.outputs.sha_short}}
-          image_new_tag: ${VERSION}
+          image_old_tag: ${{ env.VERSION }}-${{ steps.vars.outputs.sha_short}}
+          image_new_tag: ${{ env.VERSION }}
           registry: registry.hub.docker.com
           registry_username: ${{ env.DOCKERHUB_USERNAME }}
           registry_password: ${{ env.DOCKERHUB_TOKEN }}
